@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tugas Js | Array Asosiatif</title>
+</head>
+<body bgcolor="#e3faf4" style="font-family: times;font-size: 18px">
+	<center>
+		<h2 style="color: #1d4e89">Daftar Gaji Karyawan</h2>
+		<table cellpadding="10" border="1" style="color:black;border-collapse: collapse;border:1px solid #00b2ca;" width="60%">
+			<thead>
+				<tr id="head-table" bgcolor="#f79256"></tr>
+			</thead>
+			<tbody>
+				<script type="text/javascript">
+					var nomor=1, gapok, tunjab;
+					var rp = new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR'});
+					const data = {Budi:"Manager",Siti:"Manager",Andi:"Kepala Bagian",Deden:"Asisten Manager",Wawan:"Staff",Mimin:"Staff"};
+
+					for (let [key,value] of Object.entries(data)) {
+						let color = (nomor % 2 == 0) ? "#fbd1a2" : "7dcfb6";
+						switch(value){
+							case "Manager":
+								gapok = 20000000;
+								break;
+							case "Asisten Manager":
+								gapok = 15000000;
+								break;
+							case "Kepala Bagian":
+								gapok = 10000000;
+								break;
+							case "Staff":
+								gapok = 5000000;
+								break;
+							default:
+								gapok = 1000;
+							break;
+						}
+						tunjab = gapok * 0.2;
+						document.write(`
+							<tr bgcolor="${color}">
+								<td>${nomor++}</td>
+								<td>${key}</td>
+								<td>${data[key]}</td>
+								<td align="right">${rp.format(gapok)}</td>
+								<td align="right">${rp.format(tunjab)}</td>
+								<td align="right">${rp.format(tunjab+gapok)}</td>
+							</tr>
+						`);
+					}
+				</script>
+			</tbody>
+		</table>
+	</center>
+	<script type="text/javascript">
+		const judul = ["No.","Nama Pegawai","Jabatan","Gaji Pokok","Tunjab","Total Gaji"];
+		for (let key in judul) {
+			document.getElementById('head-table').innerHTML += `<th>${judul[key]}</th>`;
+		}
+	</script>
+</body>
+</html>
